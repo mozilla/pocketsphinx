@@ -6,54 +6,46 @@
     <version>1.0-SNAPSHOT</version>
     <artifactId>nar-maven-pocketsphinx</artifactId>
     <packaging>nar</packaging>
-
-
-
     <properties>
         <skipTests>true</skipTests>
     </properties>
-
     <build>
         <defaultGoal>install</defaultGoal>
         <plugins>
             <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <version>2.3.2</version>
-                    <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
             </plugin>
             <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <version>2.4.3</version>
-                    <configuration>
-                        <encoding>${project.build.sourceEncoding}</encoding>
-                    </configuration>
-            </plugin>
-            <plugin>
-                    <artifactId>maven-antrun-plugin</artifactId>
-                    <version>1.8</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.4.3</version>
+                <configuration>
+                    <encoding>${project.build.sourceEncoding}</encoding>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>1.4.1</version>
                 <executions>
-                  <execution>
-                    <id>enforce-java</id>
-                    <goals>
-                      <goal>enforce</goal>
-                    </goals>
-                    <configuration>
-                      <rules>
-                        <requireJavaVersion>
-                          <version>1.8.0</version>
-                        </requireJavaVersion>
-                      </rules>    
-                    </configuration>
-                  </execution>
+                    <execution>
+                        <id>enforce-java</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <requireJavaVersion>
+                                    <version>1.8.0</version>
+                                </requireJavaVersion>
+                            </rules>
+                        </configuration>
+                    </execution>
                 </executions>
             </plugin>
             <plugin>
@@ -76,36 +68,36 @@
                                 <type>static</type>
                                 <directory>/usr/local/lib/</directory>
                             </lib>
-                           <lib>
+                            <lib>
                                 <name>sphinxbase</name>
                                 <type>static</type>
                                 <directory>/usr/local/lib/</directory>
                             </lib>
-                        </libs> 
+                        </libs>
                     </linker>
                     <c>
                         <sourceDirectory>
                             ${basedir}/src/main/c/
                         </sourceDirectory>
-                          <includePaths>
-                              <includePath>
+                        <includePaths>
+                            <includePath>
                                 <path>/usr/local/include/pocketsphinx/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
-                              </includePath>
-                              <includePath>
+                            </includePath>
+                            <includePath>
                                 <path>/usr/local/include/sphinxbase/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
-                              </includePath>
-                              <includePath>
+                            </includePath>
+                            <includePath>
                                 <path>/usr/local/include/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
-                              </includePath>
+                            </includePath>
                         </includePaths>
                         <options>
                             <option>-g</option>
@@ -117,7 +109,6 @@
                     </c>
                 </configuration>
             </plugin>
-
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -137,10 +128,26 @@
                     </execution>
                 </executions>
             </plugin>
-            
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>1.8</version>
+                <executions>
+                    <execution>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <tasks>
+                                <echo>Deploying nar into eclipse</echo>
+                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/copy_test/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" />
+                            </tasks>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
-
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -153,7 +160,6 @@
             <version>2.1.3</version>
         </dependency>
     </dependencies>
-
     <profiles>
         <profile>
             <id>cygwin</id>
@@ -163,8 +169,7 @@
                         <groupId>com.github.maven-nar</groupId>
                         <artifactId>nar-maven-plugin</artifactId>
                         <configuration>
-                            <gnuUseOnWindows>true</gnuUseOnWindows>                    
-                    
+                            <gnuUseOnWindows>true</gnuUseOnWindows>
                             <c>
                                 <!-- add your equivalent of C:\cygwin64\bin to your PATH environment variable -->
                                 <name>gcc</name>
@@ -185,7 +190,6 @@
                                     <option>-lstdc++</option>
                                 </options>
                             </c>
-                    
                             <linker>
                                 <name>gcc</name>
                                 <options>
@@ -194,11 +198,9 @@
                                 </options>
                             </linker>
                         </configuration>
-                    </plugin>                
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
-            
 </project>
-
