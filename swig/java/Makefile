@@ -4,24 +4,31 @@ CPPFLAGS := -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin -I$(JAVA_HOME)/
 all: libpocketsphinx_jni.so
 
 libpocketsphinx_jni.so: pocketsphinx_wrap.o sphinxbase_wrap.o
-	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o `pkg-config --libs sphinxbase pocketsphinx`
-
+	cp src/main/c/* .
+	$(CC) -static -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o `pkg-config --libs sphinxbase pocketsphinx`
+#	cp libpocketsphinx_jni.so libpocketsphinx_jni.dylib
 pocketsphinx_wrap.c: ../pocketsphinx.i
 	mkdir -p edu/cmu/pocketsphinx
-	swig -I.. -I../../../sphinxbase/swig -I../include -I../../sphinxbase/include \
+	mkdir -p src/main/c
+	swig -Imain/c -I.. -I../../../sphinxbase/swig -I../include -I../../sphinxbase/include \
 		-java -package edu.cmu.pocketsphinx \
-		-outdir edu/cmu/pocketsphinx -o $@ $<
+		-outdir edu/cmu/pocketsphinx -o src/main/c/$@ $<
+	cp src/main/c/* .
 
 sphinxbase_wrap.c: ../../../sphinxbase/swig/sphinxbase.i
 	mkdir -p edu/cmu/pocketsphinx
-	swig -I.. -I../../../sphinxbase/swig -I../include -I../../sphinxbase/include \
+	mkdir -p src/main/c
+	swig -Imain/c-I.. -I../../../sphinxbase/swig -I../include -I../../sphinxbase/include \
 		-java -package edu.cmu.pocketsphinx \
-		-outdir edu/cmu/pocketsphinx -o $@ $<
+		-outdir edu/cmu/pocketsphinx -o src/main/c/$@ $<
+	cp src/main/c/* .
 
 clean:
-	$(RM) *.so *_wrap.c *_wrap.o test/*.class
+	$(RM) *.so *.dylib *_wrap.c *_wrap.o test/*.class
 	$(RM) -r edu
+	$(RM) -r src
+	$(RM) -rf target
 
 run:
-	javac test/*.java edu/cmu/pocketsphinx/*.java
-	java -Djava.library.path=. -cp . test.DecoderTest
+	javac test/src/test/*.java test/src/edu/cmu/pocketsphinx/*.java
+	java -Djava.library.path=. -cp test/src/ test.DecoderTest
