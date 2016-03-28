@@ -5,7 +5,7 @@ all: libpocketsphinx_jni.so
 
 libpocketsphinx_jni.so: pocketsphinx_wrap.o sphinxbase_wrap.o
 	cp src/main/c/* .
-	$(CC) -static -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o `pkg-config --libs sphinxbase pocketsphinx`
+	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o `pkg-config --libs sphinxbase pocketsphinx`
 #	cp libpocketsphinx_jni.so libpocketsphinx_jni.dylib
 pocketsphinx_wrap.c: ../pocketsphinx.i
 	mkdir -p edu/cmu/pocketsphinx
