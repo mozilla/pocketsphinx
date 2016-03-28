@@ -140,7 +140,7 @@
                         <configuration>
                             <tasks>
                                 <echo>Deploying nar into eclipse</echo>
-                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/copy_test/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" />
+                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" />
                             </tasks>
                         </configuration>
                     </execution>
