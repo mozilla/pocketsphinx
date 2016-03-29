@@ -142,6 +142,8 @@
                                 <echo>Deploying nar into eclipse</echo>
                                 <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/${project.artifactId}-${project.version}-jni.nar" />
                                 <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/${project.artifactId}-${project.version}.jar" />
+                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}-jni.nar" />
+                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}.jar" />
                             </tasks>
                         </configuration>
                     </execution>
