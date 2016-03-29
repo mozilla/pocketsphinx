@@ -54,7 +54,7 @@
                 <version>3.4.0</version>
                 <extensions>true</extensions>
                 <configuration>
-                    <runtime>static</runtime>
+                    <runtime>dynamic</runtime>
                     <libraries>
                         <library>
                             <type>jni</type>
@@ -65,12 +65,12 @@
                         <libs>
                             <lib>
                                 <name>pocketsphinx</name>
-                                <type>static</type>
+                                <type>shared</type>
                                 <directory>/usr/local/lib/</directory>
                             </lib>
                             <lib>
                                 <name>sphinxbase</name>
-                                <type>static</type>
+                                <type>shared</type>
                                 <directory>/usr/local/lib/</directory>
                             </lib>
                         </libs>
