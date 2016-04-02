@@ -8,3 +8,7 @@ install:
   - ./configure
   - make
   - sudo make install
+  - cd swig
+  - make
+  - cd java
+  - make
