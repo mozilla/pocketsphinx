@@ -66,12 +66,12 @@
                             <lib>
                                 <name>pocketsphinx</name>
                                 <type>shared</type>
-                                <directory>/usr/local/lib/</directory>
+                                <directory>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/</directory>
                             </lib>
                             <lib>
                                 <name>sphinxbase</name>
                                 <type>shared</type>
-                                <directory>/usr/local/lib/</directory>
+                                <directory>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/</directory>
                             </lib>
                         </libs>
                     </linker>
@@ -81,19 +81,19 @@
                         </sourceDirectory>
                         <includePaths>
                             <includePath>
-                                <path>/usr/local/include/pocketsphinx/</path>
+                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/pocketsphinx/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
                             </includePath>
                             <includePath>
-                                <path>/usr/local/include/sphinxbase/</path>
+                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/sphinxbase/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
                             </includePath>
                             <includePath>
-                                <path>/usr/local/include/</path>
+                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
