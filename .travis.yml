@@ -8,9 +8,9 @@ install:
   - git clone https://github.com/mozilla/sphinxbase
   - cd sphinxbase
   - ./autogen.sh
-  - ./configure && make && sudo make install
+  - ./configure && make && make install
   - cd ../pocketsphinx
   - ./autogen.sh
   - ./configure
   - make
-  - sudo make install
+  - make install
