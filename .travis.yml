@@ -17,4 +17,4 @@ install:
   - cd swig
   - make 
   - cd java
-   - make
+  - make
