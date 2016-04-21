@@ -63,7 +63,7 @@
                     </libraries>
                     <linker>
                         <options>
-      			        	<option>-Wl,-rpath,/smarthome/bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/</option>
+      			        	<option>-Wl,-rpath,../../../../lib/ps/lib/</option>
     			        </options>
                         <libs>
                             <lib>
