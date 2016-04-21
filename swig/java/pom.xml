@@ -63,7 +63,7 @@
                     </libraries>
                     <linker>
                         <options>
-      			        	<option>-Wl,-rpath,../../../../lib/ps/lib/</option>
+      			        	<option>-Wl,-rpath,${basedir}/../../../../lib/ps/lib/</option>
     			        </options>
                         <libs>
                             <lib>
