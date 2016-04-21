@@ -66,12 +66,12 @@
                             <lib>
                                 <name>pocketsphinx</name>
                                 <type>shared</type>
-                                <directory>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/</directory>
+                                <directory>${basedir}/../../../../lib/ps/lib/</directory>
                             </lib>
                             <lib>
                                 <name>sphinxbase</name>
                                 <type>shared</type>
-                                <directory>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/</directory>
+                                <directory>${basedir}/../../../../lib/ps/lib/</directory>
                             </lib>
                         </libs>
                     </linker>
@@ -81,19 +81,19 @@
                         </sourceDirectory>
                         <includePaths>
                             <includePath>
-                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/pocketsphinx/</path>
+                                <path>${basedir}/../../../../lib/ps/include/pocketsphinx/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
                             </includePath>
                             <includePath>
-                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/sphinxbase/</path>
+                                <path>${basedir}/../../../../lib/ps/include/sphinxbase/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
                             </includePath>
                             <includePath>
-                                <path>${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/</path>
+                                <path>${basedir}/../../../../lib/ps/include/</path>
                                 <includes>
                                     <include>**/*.h</include>
                                 </includes>
@@ -140,10 +140,10 @@
                         <configuration>
                             <tasks>
                                 <echo>Deploying nar into eclipse</echo>
-                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/${project.artifactId}-${project.version}-jni.nar" />
-                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/${project.artifactId}-${project.version}.jar" />
-                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}-jni.nar" />
-                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../bundles/io/org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}.jar" />
+                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../lib/${project.artifactId}-${project.version}-jni.nar" />
+                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../lib/${project.artifactId}-${project.version}.jar" />
+                                <copy file="target/${project.artifactId}-${project.version}-${nar.aol}-jni.nar" tofile="${basedir}/../../../../../org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}-jni.nar" />
+                                <copy file="target/${project.artifactId}-${project.version}.jar" tofile="${basedir}/../../../../../org.eclipse.smarthome.io.voice.test/lib/${project.artifactId}-${project.version}.jar" />
                             </tasks>
                         </configuration>
                     </execution>

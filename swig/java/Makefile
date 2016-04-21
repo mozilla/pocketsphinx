@@ -1,11 +1,11 @@
 CFLAGS := -g -Wall -DPIC -fPIC
-CPPFLAGS := -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin -I$(JAVA_HOME)/include/linux -Wno-unused-function -I../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/ -I../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/sphinxbase/ -I../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/include/pocketsphinx/
+CPPFLAGS := -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/darwin -I$(JAVA_HOME)/include/linux -Wno-unused-function -I../../../../lib/ps/include/ -I../../../../lib/ps/include/sphinxbase/ -I../../../../lib/ps/include/pocketsphinx/
 
 all: libpocketsphinx_jni.so
 
 libpocketsphinx_jni.so: pocketsphinx_wrap.o sphinxbase_wrap.o
 	cp src/main/c/* .
-	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o -L../../../../bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/ -lpocketsphinx -lsphinxbase
+	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o -L../../../../lib/ps/lib/ -lpocketsphinx -lsphinxbase
 #	cp libpocketsphinx_jni.so libpocketsphinx_jni.dylib
 pocketsphinx_wrap.c: ../pocketsphinx.i
 	mkdir -p edu/cmu/pocketsphinx
