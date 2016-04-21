@@ -5,7 +5,7 @@ all: libpocketsphinx_jni.so
 
 libpocketsphinx_jni.so: pocketsphinx_wrap.o sphinxbase_wrap.o
 	cp src/main/c/* .
-	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o -L../../../../lib/ps/lib/ -Wl,-rpath,$ORIGIN/lib/ps/lib -lpocketsphinx -lsphinxbase
+	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o -L../../../../lib/ps/lib/ -Wl,-rpath,/smarthome/bundles/io/org.eclipse.smarthome.io.voice/lib/ps/lib/ -lpocketsphinx -lsphinxbase
 #	cp libpocketsphinx_jni.so libpocketsphinx_jni.dylib
 pocketsphinx_wrap.c: ../pocketsphinx.i
 	mkdir -p edu/cmu/pocketsphinx
