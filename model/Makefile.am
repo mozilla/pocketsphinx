@@ -12,5 +12,6 @@ dist_enus_DATA = \
 enuslmdir = $(datadir)/@PACKAGE@/model/en-us
 dist_enuslm_DATA = \
 	en-us/cmudict-en-us.dict \
+	en-us/cmudict-en-us.dict.dmp \
 	en-us/en-us-phone.lm.bin \
 	en-us/en-us.lm.bin
