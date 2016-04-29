@@ -1,6 +1,6 @@
 #include <pocketsphinx.h>
 
-#define MODELDIR "../../model"
+#define MODELDIR "../model"
 
 int
 main(int argc, char *argv[])
@@ -30,7 +30,7 @@ main(int argc, char *argv[])
         return -1;
     }
 
-    fh = fopen("/Users/anatal/Desktop/marieta.raw", "rb");
+    fh = fopen("data/marieta.raw", "rb");
     if (fh == NULL) {
         fprintf(stderr, "Unable to open input file goforward.raw\n");
         return -1;
