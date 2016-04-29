@@ -167,8 +167,23 @@ kws_search_check_dict(kws_search_t * kwss)
         for (i = 0; i < nwrds; i++) {
             wid = dict_wordid(dict, wrdptr[i]);
             if (wid == BAD_S3WID) {
-                E_ERROR("The word '%s' is missing in the dictionary\n",
-                        wrdptr[i]);
+               // E_ERROR("The word '%s' is missing in the dictionary\n",
+                //        wrdptr[i]);
+                E_WARN("The word '%s' is missing in the dictionary. Trying to create new phoneme \n", wrdptr[i]);
+                if (!dict->ngram_g2p_model) {
+                    E_ERROR("NO dict->ngram_g2p_model. Aborting..");
+                    return FALSE;
+                }
+
+                int new_wid = dict_add_g2p_word(dict, wrdptr[i]);
+                if (new_wid > 0){
+                    /* Now we also have to add it to dict2pid. */
+                    dict2pid_add_word(ps_search_dict2pid(kwss), new_wid);
+                } else {
+                    E_ERROR("Exiting... \n");
+                    return FALSE;
+                }
+
                 success = FALSE;
                 break;
             }
