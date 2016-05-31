@@ -160,13 +160,13 @@ recognize_from_file()
     
     if (strlen(fname) > 4 && strcmp(fname + strlen(fname) - 4, ".wav") == 0) {
         char waveheader[44];
-	fread(waveheader, 1, 44, rawfd);
-	if (!check_wav_header(waveheader, (int)cmd_ln_float32_r(config, "-samprate")))
-    	    E_FATAL("Failed to process file '%s' due to format mismatch.\n", fname);
+    fread(waveheader, 1, 44, rawfd);
+    if (!check_wav_header(waveheader, (int)cmd_ln_float32_r(config, "-samprate")))
+            E_FATAL("Failed to process file '%s' due to format mismatch.\n", fname);
     }
 
     if (strlen(fname) > 4 && strcmp(fname + strlen(fname) - 4, ".mp3") == 0) {
-	E_FATAL("Can not decode mp3 files, convert input file to WAV 16kHz 16-bit mono before decoding.\n");
+    E_FATAL("Can not decode mp3 files, convert input file to WAV 16kHz 16-bit mono before decoding.\n");
     }
     
     ps_start_utt(ps);
@@ -182,9 +182,9 @@ recognize_from_file()
             ps_end_utt(ps);
             hyp = ps_get_hyp(ps, NULL);
             if (hyp != NULL)
-        	printf("%s\n", hyp);
+            printf("%s\n", hyp);
             if (print_times)
-        	print_word_times();
+            print_word_times();
             fflush(stdout);
 
             ps_start_utt(ps);
@@ -195,11 +195,11 @@ recognize_from_file()
     if (utt_started) {
         hyp = ps_get_hyp(ps, NULL);
         if (hyp != NULL) {
-    	    printf("%s\n", hyp);
-    	    if (print_times) {
-    		print_word_times();
-	    }
-	}
+            printf("%s\n", hyp);
+            if (print_times) {
+            print_word_times();
+        }
+    }
     }
     
     fclose(rawfd);
@@ -256,29 +256,24 @@ recognize_from_microphone()
             E_FATAL("Failed to read audio\n");
         ps_process_raw(ps, adbuf, k, FALSE, FALSE);
         in_speech = ps_get_in_speech(ps);
-
-        /*     if (in_speech && !utt_started) {
+        if (in_speech && !utt_started) {
             utt_started = TRUE;
             E_INFO("Listening...\n");
-        } */
-
-       // if (!in_speech && utt_started) {
+        }
+        if (!in_speech && utt_started) {
             /* speech -> silence transition, time to start new utterance  */
-            //ps_end_utt(ps);
+            ps_end_utt(ps);
             hyp = ps_get_hyp(ps, NULL );
             if (hyp != NULL) {
                 printf("%s\n", hyp);
                 fflush(stdout);
-                ps_end_utt(ps);
-                if (ps_start_utt(ps) < 0)
-                     E_FATAL("Failed to start utterance\n");
             }
 
-            //if (ps_start_utt(ps) < 0)
-            //    E_FATAL("Failed to start utterance\n");
-            //utt_started = FALSE;
-            //E_INFO("Ready....\n");
-        //}
+            if (ps_start_utt(ps) < 0)
+                E_FATAL("Failed to start utterance\n");
+            utt_started = FALSE;
+            E_INFO("Ready....\n");
+        }
         sleep_msec(100);
     }
     ad_close(ad);
@@ -297,9 +292,9 @@ main(int argc, char *argv[])
     }
 
     if (config == NULL || (cmd_ln_str_r(config, "-infile") == NULL && cmd_ln_boolean_r(config, "-inmic") == FALSE)) {
-	E_INFO("Specify '-infile <file.wav>' to recognize from file or '-inmic yes' to recognize from microphone.\n");
+    E_INFO("Specify '-infile <file.wav>' to recognize from file or '-inmic yes' to recognize from microphone.\n");
         cmd_ln_free_r(config);
-	return 1;
+    return 1;
     }
 
     ps_default_search_args(config);
@@ -308,8 +303,7 @@ main(int argc, char *argv[])
         cmd_ln_free_r(config);
         return 1;
     }
-    err_set_logfp(NULL);
-    err_set_debug_level(0);
+
     E_INFO("%s COMPILED ON: %s, AT: %s\n\n", argv[0], __DATE__, __TIME__);
 
     if (cmd_ln_str_r(config, "-infile") != NULL) {
