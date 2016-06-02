@@ -1,0 +1,64 @@
+# Build directories
+/target/*
+/sphinxbase/*
+/src/main/*
+/swig/java/edu/*
+/swig/java/pocketsphinx*.zip
+/swig/java/*.jar
+/swig/java/pocketsphinx_wrap.c
+/swig/java/sphinxbase_wrap.c
+/pocketsphinx.pc
+/src/programs/pocketsphinx_batch
+/src/programs/pocketsphinx_continuous
+/src/programs/pocketsphinx_mdef_convert
+/autom4te.cache/requests
+/config.log
+/config.status
+/libtool
+/test/testfuncs.sh
+/aclocal.m4
+/autom4te.cache/*
+/compile
+/config.guess
+/config.sub
+/configure
+/depcomp
+/ltmain.sh
+/missing
+
+# Generated Makefiles
+Makefile
+Makefile.in
+
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+*.Po
+*.Plo
+*.class
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+*.smod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
