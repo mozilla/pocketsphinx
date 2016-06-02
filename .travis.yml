@@ -1,16 +1,26 @@
-sudo: true
-
 language: c
+jdk: openjdk8
+sudo: required
+dist: trusty
 
-install: 
-  - sudo apt-get install swig
-  - cd ..
-  - git clone https://github.com/mozilla/sphinxbase
-  - cd sphinxbase
-  - ./autogen.sh
-  - ./configure && make && sudo make install
-  - cd ../pocketsphinx
-  - ./autogen.sh
-  - ./configure
-  - make
-  - sudo make install
+script:
+- ./build-java-bindings.sh
+
+addons:
+  apt:
+    packages:
+    - swig
+
+deploy:
+  provider: releases
+  api_key:
+    secure: Y8+S2qGLdXHAIV5Z7t1exS0qUkX/upJO/W/mBOrmPS3Mt20f1Md4Yz8oyRj57w51oQUq6OJXOoX18VY+rjgEn35IFpcSKJZkdajnG7MnE4beVTJml+JxgOSdJbuFV21B6sElllcdDsanP4n8OVXNCeqlkvyFuY9GQ/Eni9Z9qKvBh3FKcBCk+KpMrO2XFQQyI4gBOK0u2WjcjCagS2iffPxEqxw2m+Wu9BvkRWKA+NlDeV5c4LK4geBVahmS9jEYqMVEQi5gRZTSM8JVJzzEcy3/vi5CDjntr9RPvgODv8G6wpTCxanHytZpsO8JozOsQFnzJglQC36rHh895t9ASN6zmqNIDgw3T7KbeEQsf1SLtAq/Rf2fqEzpQBUv7HhOv+l8mtu8BbOcxyrQdzey7rFgcD+kzxJbbe8a6PR7vSpyq+A5AQiT1/Ottw8m34exi1H8o5pK8ZXrehFWZJNMLwm94f5CEpemVF3Xpf3mVhbNDQbtGzTXqxBixf72zTtpLVK/vfFQDEFzN+9dtooGett+RYA6y8aAVqwxYmNovytuSZ3c2zpwQz/UviIv3KGIY8AgVXkgQdLTGqn+cGMmqEum+T/gtU2U0XtspcUNzimqtlZDlZOOmWh9wsukhh9KynX8EhEQQhPC8Kz3MfauQnazAdW8QdG92ETZdmGkAOA=
+  file_glob: true
+  file: 
+  - swig/java/pocketsphinx*.zip
+  - model/*.tar.gz
+  skip_cleanup: true
+  on:
+    repo: mozilla/pocketsphinx
+    branch: master
+    tags: true

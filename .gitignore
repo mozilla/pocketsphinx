@@ -2,8 +2,11 @@
 /target/*
 /sphinxbase/*
 /src/main/*
-/edu/*
-
+/swig/java/edu/*
+/swig/java/pocketsphinx*.zip
+/swig/java/*.jar
+/swig/java/pocketsphinx_wrap.c
+/swig/java/sphinxbase_wrap.c
 /pocketsphinx.pc
 /src/programs/pocketsphinx_batch
 /src/programs/pocketsphinx_continuous
@@ -34,6 +37,7 @@ Makefile.in
 *.obj
 *.Po
 *.Plo
+*.class
 
 # Precompiled Headers
 *.gch
