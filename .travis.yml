@@ -18,7 +18,7 @@ deploy:
   file_glob: true
   file: 
   - swig/java/pocketsphinx*.zip
-  - model/*.tar.gz
+  - model/*.zip
   skip_cleanup: true
   on:
     repo: mozilla/pocketsphinx

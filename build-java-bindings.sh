@@ -36,5 +36,5 @@ cd model
 for d in */; do 
     name="${d%/}"
     echo "Model: $name..."
-    tar zcf languagemodel-$name.tar.gz $name
+    zip languagemodel-$name.zip $name
 done
