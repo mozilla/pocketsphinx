@@ -1,15 +1,17 @@
-language: c
-jdk: openjdk8
+language: java
 sudo: required
+
+os:
+  - linux
+  - osx
+
 dist: trusty
+
+before_install:
+- . before-install.sh
 
 script:
 - ./build-java-bindings.sh
-
-addons:
-  apt:
-    packages:
-    - swig
 
 deploy:
   provider: releases

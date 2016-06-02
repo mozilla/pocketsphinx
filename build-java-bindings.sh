@@ -36,5 +36,5 @@ cd model
 for d in */; do 
     name="${d%/}"
     echo "Model: $name..."
-    zip languagemodel-$name.zip $name
+    zip -r languagemodel-$name.zip $name
 done
