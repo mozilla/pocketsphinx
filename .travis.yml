@@ -1,15 +1,26 @@
-language: c
-jdk: openjdk8
+language: java
 sudo: required
+
+os:
+- linux
+- osx
+
+env:
+- CROSS=true
+- CROSS=false
+
+matrix:
+  exclude:
+  - os: osx
+    env: CROSS=true
+
 dist: trusty
 
-script:
-- ./build-java-bindings.sh
+before_install:
+- ./travis-prepare.sh
 
-addons:
-  apt:
-    packages:
-    - swig
+script:
+- ./travis-build.sh
 
 deploy:
   provider: releases
