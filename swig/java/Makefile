@@ -1,15 +1,3 @@
-CFLAGS := -g -Wall -DPIC -fPIC
-CPPFLAGS := -Wno-unused-function
-CPPFLAGS += -I$(JAVA_HOME)/include
-CPPFLAGS += -I$(JAVA_HOME)/include/darwin
-CPPFLAGS += -I$(JAVA_HOME)/include/linux
-CPPFLAGS += -I../../target/include
-CPPFLAGS += -I../../target/include/pocketsphinx
-CPPFLAGS += -I../../target/include/sphinxbase
-
-ALLLIBS := ../../target/lib/libsphinxbase.a
-ALLLIBS += ../../target/lib/libsphinxad.a
-ALLLIBS += ../../target/lib/libpocketsphinx.a
 
 ifeq ($(OS),Windows_NT)
     LIB_JNI = libpocketsphinx_jni.dll
@@ -51,8 +39,8 @@ all: $(PACKAGE)
 $(PACKAGE): pocketsphinx.jar $(LIB_JNI)
 	zip $@ pocketsphinx.jar $(LIB_JNI)
 
-$(LIB_JNI): pocketsphinx_wrap.o sphinxbase_wrap.o
-	$(CC) -shared -o $@ pocketsphinx_wrap.o sphinxbase_wrap.o $(ALLLIBS)
+$(LIB_JNI): pocketsphinx_wrap.c sphinxbase_wrap.c
+	$(CC) -shared pocketsphinx_wrap.c sphinxbase_wrap.c -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/$(AOL_OS) -I../../sphinxbase/include -I../../include ../../target/lib/libpocketsphinx.a ../../target/lib/libsphinxbase.a ../../target/lib/libsphinxad.a -o $@ -DPIC -fPIC -lm -lpthread
 
 pocketsphinx.jar: pocketsphinx_wrap.c sphinxbase_wrap.c
 	javac edu/cmu/pocketsphinx/*.java
