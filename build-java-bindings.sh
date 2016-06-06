@@ -24,9 +24,12 @@ echo "##### Generating swig libraries..."
 cd swig
 make
 
-echo "##### Generating jni module..."
+echo "##### Generating and building jni module..."
 cd java
 make
+
+echo "##### Testing jni module..."
+make run
 cd ..
 
 cd ..
