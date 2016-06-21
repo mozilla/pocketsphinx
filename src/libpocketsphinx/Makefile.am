@@ -8,8 +8,12 @@ libpocketsphinx_la_SOURCES =			\
 	acmod.c					\
 	bin_mdef.c				\
 	blkarray_list.c				\
+	complex_bit_reverse.c       \
+	complex_fft.c               \
+	cross_correlation.c         \
 	dict.c					\
 	dict2pid.c				\
+	downsample_fast.c				\
 	fsg_history.c				\
 	fsg_lextree.c				\
 	fsg_search.c				\
@@ -21,6 +25,7 @@ libpocketsphinx_la_SOURCES =			\
 	ms_gauden.c				\
 	ms_mgau.c				\
 	ms_senone.c				\
+	min_max_operations.c    \
 	ngram_search.c				\
 	ngram_search_fwdtree.c			\
 	ngram_search_fwdflat.c			\
@@ -29,11 +34,26 @@ libpocketsphinx_la_SOURCES =			\
 	ps_lattice.c				\
 	ps_mllr.c				\
 	ptm_mgau.c				\
+	real_fft.c              \
 	s2_semi_mgau.c				\
+	spl_init.c                  \
 	state_align_search.c			\
 	tmat.c					\
 	vector.c				\
-	pocketsphinx.c
+	pocketsphinx.c				\
+    vad_core.c				\
+    division_operations.c				\
+    resample_48khz.c    \
+	webrtc_vad.c    \
+	resample.c  \
+	resample_by_2_internal.c    \
+	resample_fractional.c       \
+	vector_scaling_operations.c \
+	vad_filterbank.c    \
+	energy.c    \
+	get_scaling_square.c    \
+	vad_sp.c    \
+	vad_gmm.c
 
 noinst_HEADERS =				\
 	pocketsphinx_internal.h			\
@@ -66,7 +86,13 @@ noinst_HEADERS =				\
 	state_align_search.h			\
 	tied_mgau_common.h			\
 	tmat.h					\
-	vector.h
+	typedefs.h              \
+	vector.h                \
+	complex_fft_tables.h    \
+	vad_gmm.h               \
+	vad_sp.h               \
+	vad_filterbank.h    \
+	resample_by_2_internal.h
 
 AM_CFLAGS =\
 	-I$(top_srcdir)/include \

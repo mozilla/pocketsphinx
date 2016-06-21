@@ -64,6 +64,14 @@
 #include "ngram_search_fwdflat.h"
 #include "allphone_search.h"
 
+#include "webrtc/common_audio/vad/include/webrtc_vad.h"
+#include "webrtc/common_audio/signal_processing/include/signal_processing_library.h"
+#include "webrtc/common_audio/include/typedefs.h"
+
+
+// handle for the VAD
+VadInst* handle;
+
 static const arg_t ps_args_def[] = {
     POCKETSPHINX_OPTIONS,
     CMDLN_EMPTY_OPTION
@@ -423,6 +431,17 @@ ps_init(cmd_ln_t *config)
         ps_free(ps);
         return NULL;
     }
+
+    E_INFO("starting webrtc_vad");
+    int ret_state = 0;
+    ret_state = WebRtcVad_Create(&handle);
+    if (ret_state == -1) return NULL;
+    ret_state = WebRtcVad_Init(handle);
+    if (ret_state == -1) return NULL;
+    ret_state = WebRtcVad_set_mode(handle, 3);
+    if (ret_state == -1) return NULL;
+    E_INFO("Webrtc_vad started");
+
     return ps;
 }
 
@@ -1074,6 +1093,13 @@ ps_decode_senscr(ps_decoder_t *ps, FILE *senfh)
     acmod_set_insenfh(ps->acmod, NULL);
 
     return n_searchfr;
+}
+
+int
+ps_process_webrtc_vad(int16 const *data,
+                      size_t n_samples){
+    int level = WebRtcVad_Process(handle, 16000, data, n_samples);
+    return level;
 }
 
 int
