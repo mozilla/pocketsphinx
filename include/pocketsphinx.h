@@ -631,6 +631,18 @@ void ps_set_rawdata_size(ps_decoder_t *ps, int32 size);
 POCKETSPHINX_EXPORT
 void ps_get_rawdata(ps_decoder_t *ps, int16 **buffer, int32 *size);
 
+
+
+/**
+ * Process the VAD level using webrtc vad
+ * @param data Raw pcm
+ * @param n_samples number of samples
+ */
+POCKETSPHINX_EXPORT
+int ps_process_webrtc_vad(int16 const *data, size_t n_samples);
+
+
+
 /**
  * @mainpage PocketSphinx API Documentation
  * @author David Huggins-Daines <dhuggins@cs.cmu.edu>

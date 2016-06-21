@@ -1,6 +1,8 @@
 dnl Welcome to the Sphinx automated build system.
 dnl try not to hurt yourself ;)
 
+
+
 AC_INIT(pocketsphinx, 5prealpha)
 AM_INIT_AUTOMAKE([no-define foreign])
 AC_CONFIG_MACRO_DIR([m4])
@@ -130,7 +132,7 @@ PKG_CONFIG_PATH environment variable is set correctly, if
 it was installed in a non-standard prefix.])])
       SPHINXBASE_PREFIX=`pkg-config --variable=prefix sphinxbase`
    fi
-   
+
    LIBS="$LIBS $SPHINXBASE_LIBS"
    CPPFLAGS="$CPPFLAGS $SPHINXBASE_CFLAGS"
    SPHINXBASE_SWIG="$SPHINXBASE_PREFIX/share/sphinxbase/swig"
@@ -143,6 +145,8 @@ else
 fi
 
 AC_SUBST(SPHINXBASE_SWIG)
+
+AC_DEFINE(WEBRTC_POSIX)
 
 AC_OUTPUT([
 pocketsphinx.pc
