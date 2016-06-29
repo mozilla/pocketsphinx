@@ -137,11 +137,19 @@
 	size_t length = node::Buffer::Length(ptr) / sizeof(int16);
         return *errcode = ps_process_raw($self, data, length, no_search, full_utt);
     }
+
+    int process_webrtc_vad(SWIG_Object ptr) {
+	int16* data = (int16*) node::Buffer::Data(ptr);
+	size_t length = node::Buffer::Length(ptr) / sizeof(int16);
+        return ps_process_webrtc_vad(data, length);
+    }
+
 #elif SWIGJAVA
     int process_raw(const int16 *SDATA, size_t NSAMP, bool no_search, bool full_utt,
                 int *errcode) {
         return *errcode = ps_process_raw($self, SDATA, NSAMP, no_search, full_utt);
     }
+
 #elif SWIGRUBY
     int process_raw(const char* STRING, size_t SIZE, bool no_search, bool full_utt,
                 int *errcode) {
