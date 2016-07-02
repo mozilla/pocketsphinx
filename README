@@ -3,6 +3,11 @@
 PocketSphinx 5prealpha
 ===============================================================================
 
+
+**ATTENTION**
+This is a customized pocketsphinx version to suit Mozilla's projects needs. 
+
+
 This is PocketSphinx, one of Carnegie Mellon University's open source large
 vocabulary, speaker-independent continuous speech recognition engine.
 
