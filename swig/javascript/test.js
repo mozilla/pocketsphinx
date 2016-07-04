@@ -21,5 +21,9 @@ fs.readFile("../../test/data/goforward.raw", function(err, data) {
     while ((seg = it.next()) != null) {
         console.log(seg.word, seg.startFrame, seg.endFrame);
     }
+
+    console.log('VAD:' + decoder.processWebrtcVad(data));
+
+
 });
 
