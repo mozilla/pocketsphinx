@@ -432,7 +432,7 @@ ps_init(cmd_ln_t *config)
         return NULL;
     }
 
-    E_INFO("starting webrtc_vad");
+    E_INFO("starting webrtc_vad \n");
     int ret_state = 0;
     ret_state = WebRtcVad_Create(&handle);
     if (ret_state == -1) return NULL;
@@ -440,7 +440,7 @@ ps_init(cmd_ln_t *config)
     if (ret_state == -1) return NULL;
     ret_state = WebRtcVad_set_mode(handle, 3);
     if (ret_state == -1) return NULL;
-    E_INFO("Webrtc_vad started");
+    E_INFO("Webrtc_vad started \n");
 
     return ps;
 }
@@ -1098,7 +1098,9 @@ ps_decode_senscr(ps_decoder_t *ps, FILE *senfh)
 int
 ps_process_webrtc_vad(int16 const *data,
                       size_t n_samples){
+    E_INFO("Feeding %i \n" , n_samples);
     int level = WebRtcVad_Process(handle, 16000, data, n_samples);
+    E_INFO("Level %i \n" , level);
     return level;
 }
 
