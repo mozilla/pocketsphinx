@@ -1098,9 +1098,7 @@ ps_decode_senscr(ps_decoder_t *ps, FILE *senfh)
 int
 ps_process_webrtc_vad(int16 const *data,
                       size_t n_samples){
-    E_INFO("Feeding %i \n" , n_samples);
     int level = WebRtcVad_Process(handle, 16000, data, n_samples);
-    E_INFO("Level %i \n" , level);
     return level;
 }
 
